@@ -95,7 +95,7 @@ def list_books():
     Returns all unique books in the vector store with their chunk 
     and page counts, derived from stored metadata.
     """
-    from graph import vectorstore
+    from .graph import vectorstore
 
     # Chroma's underlying collection lets us fetch all metadata directly
     collection = vectorstore._collection

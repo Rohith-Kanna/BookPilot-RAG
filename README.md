@@ -1,12 +1,15 @@
 # 📘 BookPilot
 
-**Agentic RAG system for querying textbooks and study PDFs — with exact page-level citations.**
+**Agentic RAG system for querying textbooks and study PDFs - with exact page-level citations.**
 
 BookPilot lets you upload PDFs (textbooks, notes, syllabi) and ask natural language questions about their content. Unlike simply uploading a document to a general-purpose chatbot, BookPilot is a purpose-built RAG pipeline that:
 
-- **Cites the exact page and source document** for every answer — not just a vague reference
+**Demo:**  ![BookPilot Demo](demo.png)
+
+
+- **Cites the exact page and source document** for every answer - not just a vague reference
 - **Intelligently decides whether to retrieve** from your documents or answer directly, using an LLM-based routing agent (built with LangGraph)
-- **Refuses to hallucinate** — if the answer isn't in your uploaded documents, it says so instead of guessing
+- **Refuses to hallucinate** - if the answer isn't in your uploaded documents, it says so instead of guessing
 - **Supports multiple books simultaneously**, tagging which source each answer came from
 
 ---
@@ -21,7 +24,7 @@ BookPilot lets you upload PDFs (textbooks, notes, syllabi) and ask natural langu
 | Agentic decision-making | Not visible/controllable | Explicit decide → retrieve → generate graph (LangGraph) |
 | Control over retrieval | None | Full control over chunking, embedding model, retrieval strategy |
 
-This project demonstrates the ability to build the underlying RAG infrastructure that products like ChatGPT's document upload feature are built on top of — the actual skill companies hire AI engineers for.
+This project demonstrates the ability to build the underlying RAG infrastructure that products like ChatGPT's document upload feature are built on top of - the actual skill companies hire AI engineers for.
 
 ---
 
@@ -48,7 +51,7 @@ This project demonstrates the ability to build the underlying RAG infrastructure
               └─────────┬──┘    │
                         │       │
                      ┌──▼───────▼──┐
-                     │   Generate   │  (Groq LLM — cites sources if retrieved)
+                     │   Generate   │  (Groq LLM - cites sources if retrieved)
                      └──────┬──────┘
                             │
                      Answer + Sources
@@ -78,12 +81,12 @@ This project demonstrates the ability to build the underlying RAG infrastructure
 
 ## Features
 
-- 📤 Upload any PDF via the UI — automatically chunked, embedded, and indexed
+- 📤 Upload any PDF via the UI - automatically chunked, embedded, and indexed
 - 💬 Chat interface with typing animation and real-time responses
 - 📚 Sidebar library view showing all indexed books with page/chunk counts
 - 🎯 Page-level source citations on every retrieval-based answer
-- 🤖 Agentic routing — general questions skip retrieval entirely, saving latency and cost
-- 🚫 Anti-hallucination — explicitly states when an answer isn't found in the documents
+- 🤖 Agentic routing - general questions skip retrieval entirely, saving latency and cost
+- 🚫 Anti-hallucination - explicitly states when an answer isn't found in the documents
 
 ---
 
@@ -130,9 +133,9 @@ Or simply upload PDFs through the running app's UI.
 
 ## Known Limitations
 
-- **Some PDFs with non-standard font encoding** (e.g., certain PowerPoint-exported notes) previously caused embedding failures due to invalid Unicode sequences — this has been fixed via UTF-8 sanitization during chunking, but PDFs with heavily corrupted text layers may still occasionally produce lower-quality chunks.
-- **Local vector store persistence** — currently uses local ChromaDB storage rather than a hosted cloud vector database. This works well for local development and demos; a production deployment would use a hosted vector DB (e.g., Chroma Cloud, Qdrant, Pinecone) to support stateless/serverless hosting.
-- **Not yet deployed to a public URL** — currently runs locally. Deployment to a platform supporting persistent storage (e.g., Fly.io, a VPS, or a hosted vector DB) is a planned next step.
+- **Some PDFs with non-standard font encoding** (e.g., certain PowerPoint-exported notes) previously caused embedding failures due to invalid Unicode sequences - this has been fixed via UTF-8 sanitization during chunking, but PDFs with heavily corrupted text layers may still occasionally produce lower-quality chunks.
+- **Local vector store persistence** - currently uses local ChromaDB storage rather than a hosted cloud vector database. This works well for local development and demos; a production deployment would use a hosted vector DB (e.g., Chroma Cloud, Qdrant, Pinecone) to support stateless/serverless hosting.
+- **Not yet deployed to a public URL** - currently runs locally. Deployment to a platform supporting persistent storage (e.g., Fly.io, a VPS, or a hosted vector DB) is a planned next step.
 
 ---
 
@@ -143,9 +146,3 @@ Or simply upload PDFs through the running app's UI.
 - [ ] Add conversation memory for follow-up questions
 - [ ] Model selector (switch between Groq models)
 - [ ] OCR fallback for scanned/image-only PDF pages
-
----
-
-## Author
-
-Built by [Rohith Kanna](https://github.com/Rohith-Kanna) — [LinkedIn](https://linkedin.com/in/rohithkannagv)
