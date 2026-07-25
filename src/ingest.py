@@ -29,8 +29,20 @@ def load_and_chunk_pdf(filepath, book_title, max_pages=None):
 
     splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
     chunks = splitter.split_documents(pages)
-    print(f"  Split into {len(chunks)} chunks")
-    return chunks
+
+    # Filter out empty/None/whitespace-only chunks (common in notes PDFs with 
+    # blank pages or image-only pages that have no extractable text)
+    valid_chunks = []
+    for c in chunks:
+        if c.page_content and isinstance(c.page_content, str) and c.page_content.strip():
+            valid_chunks.append(c)
+
+    dropped = len(chunks) - len(valid_chunks)
+    if dropped > 0:
+        print(f"  Dropped {dropped} empty/invalid chunks")
+
+    print(f"  Split into {len(valid_chunks)} usable chunks")
+    return valid_chunks
 
 
 def create_new_vectorstore(chunks):
@@ -56,6 +68,10 @@ def add_to_existing_vectorstore(chunks):
     print("Done - existing store updated, old data untouched.")
     return vectorstore
 
+
+def vectorstore_exists():
+    """Check if a Chroma store already exists on disk."""
+    return os.path.exists(CHROMA_DIR) and len(os.listdir(CHROMA_DIR)) > 0
 
 if __name__ == "__main__":
     # Usage:
