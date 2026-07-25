@@ -1,0 +1,16 @@
+langchain
+langchain-community
+langchain-groq
+langchain-huggingface
+langgraph
+
+chromadb # For vector storage
+sentence-transformers # For embedding generation
+fastapi # For API development
+uvicorn # ASGI server to run the FastAPI app
+python-dotenv # For environment variable management
+pypdf # For PDF document processing
+ipywidgets
+python-multipart
+
+langchain-chroma
