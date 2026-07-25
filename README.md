@@ -5,7 +5,7 @@
 BookPilot lets you upload PDFs (textbooks, notes, syllabi) and ask natural language questions about their content. Unlike simply uploading a document to a general-purpose chatbot, BookPilot is a purpose-built RAG pipeline that:
 
 **Demo:**  
-![BookPilot Demo](demo.png)
+![BookPilot Demo](demo.jpeg)
 
 
 - **Cites the exact page and source document** for every answer - not just a vague reference
